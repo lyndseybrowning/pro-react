@@ -12,7 +12,7 @@ export default React.createClass({
         <div className='card__title'>{title}</div>
         <div className='card__details'>
           {description}
-          <Checklist cardId={id} tasks={tasks} />
+          <CheckList cardId={id} tasks={tasks} />
         </div>
       </div>
     );
