@@ -2,20 +2,34 @@ import React from 'react';
 import CheckList from './CheckList';
 
 export default React.createClass({
+
+  getInitialState() {
+    return ({
+      showDetails: false
+    });
+  },
+
   render() {
     let title = this.props.title,
         description = this.props.description,
         id = this.props.id,
-        tasks = this.props.tasks;
+        tasks = this.props.tasks,
+        cardDetails;
 
-    return (
-      <div className='card'>
-        <div className='card__title'>{title}</div>
-        <div className='card__details'>
-          {description}
-          <CheckList cardId={id} tasks={tasks} />
-        </div>
-      </div>
-    );
+   if(this.state.showDetails) {
+     cardDetails = (
+       <div className='card__details'>
+         {description}
+         <CheckList cardId={id} tasks={tasks} />
+       </div>
+     );
+   }
+
+  return (
+    <div className='card'>
+      <div className='card__title' onClick={() => this.setState({ showDetails: !this.state.showDetails })}>{title}</div>
+      {cardDetails}
+    </div>
+  );
   }
 });
