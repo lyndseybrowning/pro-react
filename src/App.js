@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import KanbanBoard from './KanbanBoard';
+import './css/style.css';
 
 const cardsList = [
   {
@@ -32,7 +33,7 @@ const cardsList = [
         done: false
       }
     ]
-  }  
+  }
 ];
 
 ReactDOM.render(<KanbanBoard cards={cardsList} />, document.getElementById('app'));
