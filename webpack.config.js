@@ -11,20 +11,37 @@ var config = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['es2015','react']
+    loaders: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015','react']
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css?modules!postcss'
       }
-    }]
+    ]
   },
+
+  postcss: [
+    require('autoprefixer')
+  ],
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+
   devServer: {
-    contentBase: ".",
     colors: true,
     historyApiFallback: true,
-    inline: true
+    post: process.env.PORT||8080,
+    inline: true,
+    hot: true
   },
 }
 
