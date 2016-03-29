@@ -1,4 +1,5 @@
 import React from 'react';
+import CheckList from './CheckList';
 
 export default React.createClass({
   render() {
