@@ -5,7 +5,7 @@ var webpack = require('webpack');
  */
 var config = {
   devtool: 'eval-source-map',
-  entry:  __dirname + "/src/App.js",
+  entry:  __dirname + "/src/js/main.js",
   output: {
     path: __dirname + "/build",
     filename: "bundle.js"
@@ -22,7 +22,7 @@ var config = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css?modules!postcss'
+        loaders: ['style', 'css']
       }
     ]
   },
