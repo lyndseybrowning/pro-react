@@ -9,6 +9,10 @@ export default React.createClass({
     });
   },
 
+  toggleDetails() {
+    this.setState({ showDetails: !this.state.showDetails });
+  },
+
   render() {
     let title = this.props.title,
         description = this.props.description,
@@ -27,7 +31,7 @@ export default React.createClass({
 
   return (
     <div className='card'>
-      <div className='card__title' onClick={() => this.setState({ showDetails: !this.state.showDetails })}>{title}</div>
+      <div className='card__title' onClick={this.toggleDetails}>{title}</div>
       {cardDetails}
     </div>
   );
