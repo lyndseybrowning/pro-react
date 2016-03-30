@@ -18,7 +18,7 @@ export default React.createClass({
         description = this.props.description,
         id = this.props.id,
         tasks = this.props.tasks,
-        cardDetails;
+        cardDetails, cardTitleClass = 'card__title';
 
    if(this.state.showDetails) {
      cardDetails = (
@@ -27,11 +27,13 @@ export default React.createClass({
          <CheckList cardId={id} tasks={tasks} />
        </div>
      );
+
+     cardTitleClass += ' card__title--is-open';
    }
 
   return (
     <div className='card'>
-      <div className='card__title' onClick={this.toggleDetails}>{title}</div>
+      <div className={cardTitleClass} onClick={this.toggleDetails}>{title}</div>
       {cardDetails}
     </div>
   );
