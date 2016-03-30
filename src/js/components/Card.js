@@ -18,7 +18,8 @@ export default React.createClass({
         description = this.props.description,
         id = this.props.id,
         tasks = this.props.tasks,
-        cardDetails, cardTitleClass = 'card__title';
+        cardTitleClass = 'card__title',
+        cardDetails, sideColor;
 
    if(this.state.showDetails) {
      cardDetails = (
@@ -29,10 +30,21 @@ export default React.createClass({
      );
 
      cardTitleClass += ' card__title--is-open';
-   }
+  }
+
+  sideColor = {
+    position: 'absolute',
+    zIndex: -1,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: 7,
+    backgroundColor: this.props.color
+  };
 
   return (
     <div className='card'>
+      <div style={sideColor} />
       <div className={cardTitleClass} onClick={this.toggleDetails}>{title}</div>
       {cardDetails}
     </div>

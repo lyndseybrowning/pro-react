@@ -10,6 +10,7 @@ export default React.createClass({
               id={card.id}
               title={card.title}
               description={card.description}
+              color={card.color}
               tasks={card.tasks}
         />
       );
