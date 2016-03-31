@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 export default React.createClass({
+
+  propTypes: {
+    cardId: PropTypes.number,
+    tasks: PropTypes.arrayOf(PropTypes.object)
+  },
+
   render() {
     let cardId = this.props.cardId;
     let tasks = this.props.tasks.map((task) => (

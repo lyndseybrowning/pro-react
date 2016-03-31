@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import CheckList from './CheckList';
 
 export default React.createClass({
+
+  propTypes: {
+    id: PropTypes.number,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    color: PropTypes.string,
+    tasks: PropTypes.arrayOf(PropTypes.object)
+  },
 
   getInitialState() {
     return ({

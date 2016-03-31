@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import List from './List';
 
 export default React.createClass({
+
+  propTypes: {
+    cards: PropTypes.arrayOf(PropTypes.object)
+  },
+
   render() {
     let cards = this.props.cards;
 

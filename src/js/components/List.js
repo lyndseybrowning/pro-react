@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Card from './Card';
 
 export default React.createClass({
+
+  propTypes: {
+    title: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.object)
+  },
+
   render() {
     let title = this.props.title;
     let cards = this.props.cards.map((card) => {
