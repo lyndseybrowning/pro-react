@@ -38,7 +38,7 @@ export default React.createClass({
         <input type='text'
                className='checklist--add-task'
                placeholder='Type then hit Enter to add a task'
-               onKeyPress={this.checkInputKeyPress.bind(this)} />
+               onKeyPress={this.checkInputKeyPress} />
       </div>
     );
   }
