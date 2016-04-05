@@ -19,7 +19,8 @@ export default React.createClass({
     title: titlePropType,
     description: PropTypes.string,
     color: PropTypes.string,
-    tasks: PropTypes.arrayOf(PropTypes.object)
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    taskCallbacks: PropTypes.object
   },
 
   getInitialState() {
@@ -44,7 +45,10 @@ export default React.createClass({
      cardDetails = (
        <div className='card__details'>
          {description}
-         <CheckList cardId={id} tasks={tasks} />
+         <CheckList
+             cardId={id}
+             tasks={tasks}
+             taskCallbacks={this.props.taskCallbacks} />
        </div>
      );
 
