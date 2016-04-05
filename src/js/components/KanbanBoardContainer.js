@@ -23,7 +23,6 @@ class KanbanBoardContainer extends Component {
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({ cards: responseData });
-      console.log(this.state.cards);
     })
     .catch((error) => {
       console.log('Error fetching and parsing data', error);
@@ -46,6 +45,12 @@ class KanbanBoardContainer extends Component {
     });
 
     this.setState({ cards: nextState });
+
+    // call API to remove task on server
+    fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
+      method: 'delete',
+      headers: API_HEADERS
+    });
   }
 
   toggleTask(cardId, taskId, taskIndex) {
