@@ -4,7 +4,8 @@ export default React.createClass({
 
   propTypes: {
     cardId: PropTypes.number,
-    tasks: PropTypes.arrayOf(PropTypes.object)
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    taskCallbacks: PropTypes.object
   },
 
   checkInputKeyPress(evt) {
