@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import update from 'react-addons-update';
 import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch';
+import 'babel-polyfill';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
