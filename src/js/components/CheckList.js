@@ -22,12 +22,12 @@ export default React.createClass({
         <input type='checkbox'
                defaultChecked={task.done}
                onChange={
-                 this.props.taskCallbacks.toggle.bind(null, this.props.cardId, task.id, taskIndex)
+                 this.props.taskCallbacks.toggle.bind(null, cardId, task.id, taskIndex)
                } />
 
         {task.name}
         <a href='#' className='checklist__task--remove' onClick={
-            this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)
+            this.props.taskCallbacks.delete.bind(null, cardId, task.id, taskIndex)
           } />
       </li>
     ));

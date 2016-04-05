@@ -22,7 +22,8 @@ class KanbanBoardContainer extends Component {
     fetch(`${API_URL}/cards`, { headers: API_HEADERS })
     .then((response) => response.json())
     .then((responseData) => {
-      this.setState({ cards: responseData })
+      this.setState({ cards: responseData });
+      console.log(this.state.cards);
     })
     .catch((error) => {
       console.log('Error fetching and parsing data', error);
@@ -34,7 +35,17 @@ class KanbanBoardContainer extends Component {
   }
 
   deleteTask(cardId, taskId, taskIndex) {
+    // find the index of the card
+    let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
 
+    // create a new object without the task
+    let nextState = update(this.state.cards, {
+      [cardIndex]: {
+        tasks: { $splice: [[taskIndex, 1]] }
+      }
+    });
+
+    this.setState({ cards: nextState });
   }
 
   toggleTask(cardId, taskId, taskIndex) {
