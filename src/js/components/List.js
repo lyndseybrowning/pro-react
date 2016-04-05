@@ -5,7 +5,8 @@ export default React.createClass({
 
   propTypes: {
     title: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.object)
+    cards: PropTypes.arrayOf(PropTypes.object),
+    taskCallbacks: PropTypes.object
   },
 
   render() {
@@ -13,6 +14,7 @@ export default React.createClass({
     let cards = this.props.cards.map((card) => {
       return (
         <Card key={card.id}
+              taskCallbacks={this.props.taskCallbacks}
               id={card.id}
               title={card.title}
               description={card.description}
