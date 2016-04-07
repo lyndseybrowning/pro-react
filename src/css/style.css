@@ -98,3 +98,29 @@ ul {
   margin-top: 5px;
   border-radius: 3px;
 }
+
+/* animation.html styling sidebar */
+.sidebar {
+  background-color: #eee;
+  box-shadow: 1px 0 3px #888;
+  position: absolute;
+  width: 15rem;
+  height: 100%;
+}
+
+.sidebar-transition {
+  opacity: 0;
+  left: -15rem;
+}
+
+.sidebar-transition-active {
+  opacity: 1;
+  left: 0;
+  transition: ease-in-out 0.5s;
+}
+
+.sidebar li {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #ddd;
+}
