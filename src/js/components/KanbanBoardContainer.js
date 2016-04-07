@@ -30,6 +30,9 @@ class KanbanBoardContainer extends Component {
   }
 
   addTask(cardId, taskName) {
+    // store reference to current state before we change it
+    let prevState = this.state;
+
     let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
 
     // create a new task with the given name and a temporary Id
@@ -53,17 +56,28 @@ class KanbanBoardContainer extends Component {
       headers: API_HEADERS,
       body: JSON.stringify(newTask)
     })
-    .then((response) => response.json())
+    .then((response) => {
+      if(response.ok) {
+        return response.json();
+      }
+      throw new Error("Server response wasn't OK");
+    })
     .then((responseData) => {
       // when the server returns the definitive Id
       // used for the new task, update it in React
       newTask.id = responseData.id;
       this.setState({ cards: nextState });
+    })
+    .catch((error) => {
+      this.setState(prevState);
     });
-
   }
 
   deleteTask(cardId, taskId, taskIndex) {
+    // keep reference to the original state prior to the mutations
+    // in case we need to revert the optimistic changes in the UI
+    let prevState = this.state;
+
     // find the index of the card
     let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
 
@@ -80,10 +94,21 @@ class KanbanBoardContainer extends Component {
     fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {
       method: 'delete',
       headers: API_HEADERS
+    })
+    .then((response) => {
+      if(!response.ok) {
+        throw new Error("Server response wasn't OK");
+      }
+    })
+    .catch((error) => {
+      console.eror("Fetch error:", error);
+      this.setState(prevState);
     });
   }
 
   toggleTask(cardId, taskId, taskIndex) {
+      let prevState = this.state;
+      
       let cardIndex = this.state.cards.findIndex((card) => card.id == cardId);
       // save a reference to the tasks done value
       let newDoneValue;
@@ -109,6 +134,15 @@ class KanbanBoardContainer extends Component {
         method: 'put',
         headers: API_HEADERS,
         body: JSON.stringify({ done: newDoneValue })
+      })
+      .then((response) => {
+        if(!response.ok) {
+          throw new Error("Server response wasn't OK");
+        }
+      })
+      .catch((error) => {
+        console.eror("Fetch error:", error);
+        this.setState(prevState);
       });
   }
 
