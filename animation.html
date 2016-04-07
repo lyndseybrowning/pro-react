@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Pro React </title>
+    <link rel="stylesheet" type="text/css" href="src/css/style.css">
+  </head>
+  <body>
+    <header>
+      <button id="btn"> &#9776; </button>
+    </header>
+    <div class="sidebar sidebar-transition">
+      <ul>
+        <li> Some conent </li>
+        <li> Content B </li>
+        <li> Content X </li>
+      </ul>
+    </div>
+    <script>
+      var toggled = false;
+      document.getElementById('btn').addEventListener('click', function() {
+        var sidebar = document.querySelector('.sidebar');
+
+        if(!toggled) {
+          sidebar.classList.add('sidebar-transition-active');
+          toggled = true;
+        } else {
+          sidebar.classList.remove('sidebar-transition-active');
+          toggled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
